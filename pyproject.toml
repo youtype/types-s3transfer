@@ -1,0 +1,95 @@
+[tool.black]
+line-length = 100
+include = '(s3transfer-stubs)/.*\.pyi?$'
+target-version = [
+    'py36',
+    'py37',
+    'py38',
+    'py39',
+    'py310',
+]
+preview = true
+
+[tool.isort]
+profile = "black"
+line_length = 100
+src_paths = []
+
+[tool.poetry]
+name = "types-s3tranfer"
+version = "0.6.0.post1"
+description = "Type annotations and code completion for s3transfer"
+authors = ["Vlad Emelianov <vlad.emelianov.nz@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://youtype.github.io/mypy_boto3_builder/"
+repository = "https://github.com/youtype/types-s3tranfer"
+documentation = "https://youtype.github.io/mypy_boto3_builder/"
+keywords = ["s3transfer", "type-annotations", "pyright", "mypy", "boto3"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Typing :: Stubs Only",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+packages = [
+    { include = "s3transfer-stubs" },
+]
+include = [
+    "s3transfer-stubs/py.typed",
+    "s3transfer-stubs/*.pyi",
+    "s3transfer-stubs/*/*.pyi",
+]
+
+[tool.poetry.urls]
+"Documentation" = "https://youtype.github.io/mypy_boto3_builder/"
+"Source" = "https://github.com/youtype/types-s3transfer"
+"Bug Tracker" = "https://github.com/youtype/types-s3transfer/issues"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pip = "*"
+
+[tool.poetry.dev-dependencies]
+s3transfer = "*"
+awscrt = "*"
+isort = "*"
+black = "*"
+mypy = "*"
+flake8 = "*"
+twine = "*"
+pyyaml = "*"
+botocore-stubs = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+include = [
+    "types-s3transfer",
+]
+exclude = [
+    "**/__pycache__",
+    "tests",
+    "typestubs",
+]
+reportMissingImports = "error"
+reportMissingTypeStubs = false
+reportMissingTypeArgument = "error"
+reportIncompatibleMethodOverride = "error"
+reportIncompatibleVariableOverride = "error"
+reportUnknownParameterType = "error"
+pythonVersion = "3.10"
