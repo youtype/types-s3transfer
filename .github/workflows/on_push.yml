@@ -40,5 +40,5 @@ jobs:
           poetry run flake8 s3transfer-stubs
           poetry run npx pyright s3transfer-stubs
           poetry run mypy s3transfer-stubs
-          poetry run black --check s3transfer-stubs tests
-          poetry run isort -c s3transfer-stubs tests
+          poetry run black --check s3transfer-stubs
+          poetry run isort -c s3transfer-stubs
