@@ -2,22 +2,24 @@ import logging
 from queue import Queue
 from typing import IO, Any, Callable, Dict, Iterator, List, Mapping, Optional, Type, TypeVar, Union
 
+from botocore.awsrequest import AWSRequest
 from botocore.client import BaseClient
 from s3transfer.exceptions import RetriesExceededError as RetriesExceededError
 from s3transfer.exceptions import S3UploadFailedError as S3UploadFailedError
+from s3transfer.futures import BaseExecutor
 
 _R = TypeVar("_R")
 
 class NullHandler(logging.Handler):
     def emit(self, record: Any) -> None: ...
 
-logger: logging.Logger
-MB: int
-SHUTDOWN_SENTINEL: Any
+logger: logging.Logger = ...
+MB: int = ...
+SHUTDOWN_SENTINEL: object = ...
 
 def random_file_extension(num_digits: int = ...) -> str: ...
-def disable_upload_callbacks(request: Any, operation_name: str, **kwargs: Any) -> None: ...
-def enable_upload_callbacks(request: Any, operation_name: str, **kwargs: Any) -> None: ...
+def disable_upload_callbacks(request: AWSRequest, operation_name: str, **kwargs: Any) -> None: ...
+def enable_upload_callbacks(request: AWSRequest, operation_name: str, **kwargs: Any) -> None: ...
 
 class QueueShutdownError(Exception): ...
 
@@ -67,7 +69,11 @@ class OSUtils:
 class MultipartUploader:
     UPLOAD_PART_ARGS: List[str]
     def __init__(
-        self, client: BaseClient, config: TransferConfig, osutil: OSUtils, executor_cls: Any = ...
+        self,
+        client: BaseClient,
+        config: TransferConfig,
+        osutil: OSUtils,
+        executor_cls: Type[BaseExecutor] = ...,
     ) -> None: ...
     def upload_file(
         self,
@@ -85,7 +91,11 @@ class ShutdownQueue(Queue[Any]):
 
 class MultipartDownloader:
     def __init__(
-        self, client: BaseClient, config: TransferConfig, osutil: OSUtils, executor_cls: Any = ...
+        self,
+        client: BaseClient,
+        config: TransferConfig,
+        osutil: OSUtils,
+        executor_cls: Type[BaseExecutor] = ...,
     ) -> None: ...
     def download_file(
         self,
