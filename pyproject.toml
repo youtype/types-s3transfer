@@ -16,14 +16,14 @@ line_length = 100
 src_paths = []
 
 [tool.poetry]
-name = "types-s3tranfer"
+name = "types-s3transfer"
 version = "0.6.0.post1"
 description = "Type annotations and code completion for s3transfer"
 authors = ["Vlad Emelianov <vlad.emelianov.nz@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://youtype.github.io/mypy_boto3_builder/"
-repository = "https://github.com/youtype/types-s3tranfer"
+repository = "https://github.com/youtype/types-s3transfer"
 documentation = "https://youtype.github.io/mypy_boto3_builder/"
 keywords = ["s3transfer", "type-annotations", "pyright", "mypy", "boto3"]
 classifiers = [
@@ -59,7 +59,7 @@ include = [
 "Bug Tracker" = "https://github.com/youtype/types-s3transfer/issues"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.6"
 pip = "*"
 
 [tool.poetry.dev-dependencies]
@@ -67,12 +67,12 @@ s3transfer = "*"
 awscrt = "*"
 botocore = "*"
 isort = "*"
-black = "*"
+black = {version = "*", python = "^3.6.2"}
 mypy = "*"
 flake8 = "*"
 twine = "*"
 pyyaml = "*"
-istub = "*"
+istub = {version = "*", python = "^3.10"}
 botocore-stubs = "*"
 
 [build-system]
