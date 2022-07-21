@@ -9,3 +9,4 @@ flake8 s3transfer-stubs
 black s3transfer-stubs
 isort s3transfer-stubs
 mypy s3transfer-stubs
+python -m istub -u

@@ -9,13 +9,13 @@ packages:
   snapshots:
     stubtest: |-
       error: s3transfer.compat.BaseManager.shutdown is not present at runtime
-      Stub: at line 97
+      Stub: at line 152
       def (self: multiprocessing.managers.BaseManager)
       Runtime:
       MISSING
 
       error: s3transfer.processpool.BaseManager.shutdown is not present at runtime
-      Stub: at line 97
+      Stub: at line 152
       def (self: multiprocessing.managers.BaseManager)
       Runtime:
       MISSING

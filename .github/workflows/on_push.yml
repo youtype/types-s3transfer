@@ -42,3 +42,6 @@ jobs:
           poetry run mypy s3transfer-stubs
           poetry run black --check s3transfer-stubs
           poetry run isort -c s3transfer-stubs
+      - name: Stubs consistency check
+        run: |
+          poetry run istub

@@ -65,12 +65,14 @@ pip = "*"
 [tool.poetry.dev-dependencies]
 s3transfer = "*"
 awscrt = "*"
+botocore = "*"
 isort = "*"
 black = "*"
 mypy = "*"
 flake8 = "*"
 twine = "*"
 pyyaml = "*"
+istub = "*"
 botocore-stubs = "*"
 
 [build-system]
