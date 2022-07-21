@@ -81,7 +81,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.pyright]
 include = [
-    "types-s3transfer",
+    "s3transfer-stubs",
 ]
 exclude = [
     "**/__pycache__",
@@ -94,4 +94,4 @@ reportMissingTypeArgument = "error"
 reportIncompatibleMethodOverride = "error"
 reportIncompatibleVariableOverride = "error"
 reportUnknownParameterType = "error"
-pythonVersion = "3.10"
+pythonVersion = "3.6"
