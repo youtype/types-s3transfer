@@ -2,9 +2,9 @@ packages:
 - name: s3transfer
   path: ./s3transfer-stubs
   checks:
-    flake8: true
-    pyright: true
-    mypy: true
+    flake8: false
+    pyright: false
+    mypy: false
     stubtest: true
   snapshots:
     stubtest: |-
