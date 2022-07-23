@@ -60,15 +60,14 @@ include = [
 "Bug Tracker" = "https://github.com/youtype/types-s3transfer/issues"
 
 [tool.poetry.dependencies]
-python = "^3.6"
-pip = "*"
+python = "^3.7"
 
 [tool.poetry.dev-dependencies]
 s3transfer = "*"
 awscrt = "*"
 botocore = "*"
 isort = "*"
-black = {version = "*", python = "^3.6.2"}
+black = "*"
 mypy = "*"
 flake8 = "*"
 twine = "*"
