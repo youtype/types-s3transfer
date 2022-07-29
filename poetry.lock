@@ -47,7 +47,7 @@ dev = ["build (==0.8.0)", "flake8 (==4.0.1)", "hashin (==0.17.0)", "pip-tools (=
 
 [[package]]
 name = "botocore"
-version = "1.27.35"
+version = "1.27.41"
 description = "Low-level, data-driven core of boto 3."
 category = "dev"
 optional = false
@@ -63,11 +63,11 @@ crt = ["awscrt (==0.13.8)"]
 
 [[package]]
 name = "botocore-stubs"
-version = "1.27.35"
-description = "Type annotations for botocore 1.27.35 generated with mypy-boto3-builder 7.9.2"
+version = "1.27.41"
+description = "Type annotations for botocore 1.27.41 generated with mypy-boto3-builder 7.10.2"
 category = "dev"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 typing-extensions = ">=4.1.0"
@@ -214,11 +214,14 @@ plugins = ["setuptools"]
 
 [[package]]
 name = "istub"
-version = "0.1.1"
+version = "0.1.2"
 description = "Validator for type annotations"
 category = "dev"
 optional = false
 python-versions = ">=3.10,<4.0"
+
+[package.dependencies]
+pyyaml = "*"
 
 [[package]]
 name = "jeepney"
@@ -534,7 +537,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "urllib3"
-version = "1.26.10"
+version = "1.26.11"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 category = "dev"
 optional = false
