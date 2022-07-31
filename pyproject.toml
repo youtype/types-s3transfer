@@ -2,7 +2,6 @@
 line-length = 100
 include = '(s3transfer-stubs)/.*\.pyi?$'
 target-version = [
-    'py36',
     'py37',
     'py38',
     'py39',
@@ -71,7 +70,7 @@ mypy = "*"
 flake8 = "*"
 twine = "*"
 pyyaml = "*"
-istub = {version = "*", python = "^3.10"}
+istub = "*"
 botocore-stubs = "*"
 
 [build-system]
@@ -93,4 +92,4 @@ reportMissingTypeArgument = "error"
 reportIncompatibleMethodOverride = "error"
 reportIncompatibleVariableOverride = "error"
 reportUnknownParameterType = "error"
-pythonVersion = "3.6"
+pythonVersion = "3.7"

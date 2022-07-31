@@ -21,7 +21,7 @@ Use [mypy](https://github.com/python/mypy) or [pyright](https://github.com/micro
 
 ### Latest changes
 
-Builder changelog can be found in [Releases](https://github.com/youtype/mypy_boto3_builder/releases).
+Full changelog can be found in [Releases](https://github.com/youtype/types-s3transfer/releases).
 
 ## Versioning
 
@@ -31,4 +31,4 @@ Builder changelog can be found in [Releases](https://github.com/youtype/mypy_bot
 ## Support and contributing
 
 Please reports any bugs or request new features in
-[mypy-boto3-builder](https://github.com/youtype/mypy_boto3_builder/issues/) repository.
+[types-s3transfer](https://github.com/youtype/types-s3transfer/issues/) repository.
