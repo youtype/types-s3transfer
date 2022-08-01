@@ -63,7 +63,7 @@ crt = ["awscrt (==0.13.8)"]
 
 [[package]]
 name = "botocore-stubs"
-version = "1.27.42.post1"
+version = "1.27.42.post3"
 description = "Type annotations and code completion for botocore"
 category = "dev"
 optional = false
@@ -159,7 +159,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "flake8"
-version = "5.0.0"
+version = "5.0.1"
 description = "the modular source code checker: pep8 pyflakes and co"
 category = "dev"
 optional = false
@@ -211,7 +211,7 @@ plugins = ["setuptools"]
 
 [[package]]
 name = "istub"
-version = "0.2.0"
+version = "0.2.1"
 description = "Validator for type annotations"
 category = "dev"
 optional = false
@@ -525,6 +525,14 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "types-awscrt"
+version = "0.13.14"
+description = "Type annotations and code completion for awscrt"
+category = "main"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[[package]]
 name = "typing-extensions"
 version = "4.3.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
@@ -568,7 +576,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "f28ad60ca49f2126a74970232d109e0d771c383ae43892946f158e8ff52059c6"
+content-hash = "c46a8e48978b7f5ef2ecaa6e6d94b4d822c9dc421296eb51fa50d57664761e28"
 
 [metadata.files]
 awscrt = []
@@ -606,8 +614,8 @@ botocore = [
     {file = "botocore-1.27.42.tar.gz", hash = "sha256:38a180a6666c5a9b069a75ec3cf374ff2a64c3e90c9f24a916858bcdeb04456d"},
 ]
 botocore-stubs = [
-    {file = "botocore-stubs-1.27.42.post1.tar.gz", hash = "sha256:e5feb509594148f6311bc785d35a285016d9979456336cebce15ee4fcae20d9e"},
-    {file = "botocore_stubs-1.27.42.post1-py3-none-any.whl", hash = "sha256:59115ed3ea774ffc5a973a962c316a90378a02758d368675af7f136f55844da1"},
+    {file = "botocore-stubs-1.27.42.post3.tar.gz", hash = "sha256:62499e555abb13ef301e492870bf77e66d9673dd69601f1d6278e508e92235f2"},
+    {file = "botocore_stubs-1.27.42.post3-py3-none-any.whl", hash = "sha256:3e8809fdc84ba63b043f126598cdd774d7e6f4d762ba3ac4c89a290d9c3f31b7"},
 ]
 certifi = [
     {file = "certifi-2022.6.15-py3-none-any.whl", hash = "sha256:fe86415d55e84719d75f8b69414f6438ac3547d2078ab91b67e779ef69378412"},
@@ -633,8 +641,8 @@ commonmark = [
 cryptography = []
 docutils = []
 flake8 = [
-    {file = "flake8-5.0.0-py2.py3-none-any.whl", hash = "sha256:f44e470195849d0596cb488c7bd769086fcbe987c10cc9daae9a13b4136abb24"},
-    {file = "flake8-5.0.0.tar.gz", hash = "sha256:503b06b6795189e55298a70b695b1eb4f6b8d479fae81352fc97c72ca242509e"},
+    {file = "flake8-5.0.1-py2.py3-none-any.whl", hash = "sha256:44e3ecd719bba1cb2ae65d1b54212cc9df4f5db15ac271f8856e5e6c2eebefed"},
+    {file = "flake8-5.0.1.tar.gz", hash = "sha256:9c51d3d1426379fd444d3b79eabbeb887849368bd053039066439523d8486961"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
@@ -649,8 +657,8 @@ isort = [
     {file = "isort-5.10.1.tar.gz", hash = "sha256:e8443a5e7a020e9d7f97f1d7d9cd17c88bcb3bc7e218bf9cf5095fe550be2951"},
 ]
 istub = [
-    {file = "istub-0.2.0-py3-none-any.whl", hash = "sha256:dee439993bca2f7e9aa1302758c9ed94c16533f309f4afaf505f76e62d383537"},
-    {file = "istub-0.2.0.tar.gz", hash = "sha256:bae90e2c838bf5dfee69745d35643a7c49418b29372c5a89de3708a03304a299"},
+    {file = "istub-0.2.1-py3-none-any.whl", hash = "sha256:5f39f7db2850ee087286f58866468b7a1c278b60e4ee1ff3373f3bc27efe0a84"},
+    {file = "istub-0.2.1.tar.gz", hash = "sha256:94926bce6bacddc63afd1e3e516dc7acd9870939f53ac8ca44e9930ba0105ffc"},
 ]
 jeepney = [
     {file = "jeepney-0.8.0-py3-none-any.whl", hash = "sha256:c0a454ad016ca575060802ee4d590dd912e35c122fa04e70306de3d076cce755"},
@@ -803,6 +811,10 @@ typed-ast = [
     {file = "typed_ast-1.5.4-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:98f80dee3c03455e92796b58b98ff6ca0b2a6f652120c263efdba4d6c5e58f72"},
     {file = "typed_ast-1.5.4-cp39-cp39-win_amd64.whl", hash = "sha256:0fdbcf2fef0ca421a3f5912555804296f0b0960f0418c440f5d6d3abb549f3e1"},
     {file = "typed_ast-1.5.4.tar.gz", hash = "sha256:39e21ceb7388e4bb37f4c679d72707ed46c2fbf2a5609b8b8ebc4b067d977df2"},
+]
+types-awscrt = [
+    {file = "types-awscrt-0.13.14.tar.gz", hash = "sha256:39a69df579036fa5c390c5721a9470cb8a34e1dc216c38198f83e42d5c62f3be"},
+    {file = "types_awscrt-0.13.14-py3-none-any.whl", hash = "sha256:786b99c86833bede6e848ef91d274c0ea97caad8c5fba9d9f61c05564ad56633"},
 ]
 typing-extensions = []
 urllib3 = []

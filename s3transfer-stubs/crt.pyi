@@ -14,10 +14,9 @@ from typing import (
     Union,
 )
 
-# FIXME: awscrt is untyped
-from awscrt.auth import AwsCredentials  # type: ignore
-from awscrt.http import HttpRequest  # type: ignore
-from awscrt.s3 import S3Client, S3Request  # type: ignore
+from awscrt.auth import AwsCredentials
+from awscrt.http import HttpRequest
+from awscrt.s3 import S3Client, S3Request
 from botocore.credentials import CredentialProvider
 from botocore.session import Session
 from s3transfer.constants import GB as GB
@@ -110,7 +109,9 @@ class CRTTransferFuture(BaseTransferFuture):
     def set_exception(self, exception: BaseException) -> None: ...
 
 class BaseCRTRequestSerializer:
-    def serialize_http_request(self, transfer_type: str, future: CRTTransferFuture) -> None: ...
+    def serialize_http_request(
+        self, transfer_type: str, future: CRTTransferFuture
+    ) -> HttpRequest: ...
 
 class BotocoreCRTRequestSerializer(BaseCRTRequestSerializer):
     def __init__(
