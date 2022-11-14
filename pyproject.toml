@@ -46,7 +46,6 @@ packages = [
     { include = "s3transfer-stubs" },
 ]
 include = [
-    "LICENSE",
     "s3transfer-stubs/py.typed",
     "s3transfer-stubs/*.pyi",
     "s3transfer-stubs/*/*.pyi",
