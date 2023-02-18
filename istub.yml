@@ -21,7 +21,7 @@ packages:
       MISSING
 
       error: s3transfer.processpool.TransferMonitorManager.TransferMonitor is not present in stub
-      Stub:
+      Stub: in file ./s3transfer-stubs/processpool.pyi
       MISSING
       Runtime: at line 721 in file ./multiprocessing/managers.py
       <function BaseManager.register.<locals>.temp at HASH>
