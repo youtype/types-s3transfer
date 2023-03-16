@@ -2,7 +2,7 @@ import logging
 import multiprocessing
 from collections.abc import Generator
 from queue import Queue
-from typing import Any, Dict, Mapping, NamedTuple, Optional, Type, TypeVar, Callable
+from typing import Any, Callable, Dict, Mapping, NamedTuple, Optional, Type, TypeVar
 
 from botocore.client import BaseClient
 from s3transfer.compat import MAXINT as MAXINT
