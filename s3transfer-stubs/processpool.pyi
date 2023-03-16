@@ -2,7 +2,7 @@ import logging
 import multiprocessing
 from collections.abc import Generator
 from queue import Queue
-from typing import Any, Dict, Mapping, NamedTuple, Optional, Type, TypeVar
+from typing import Any, Dict, Mapping, NamedTuple, Optional, Type, TypeVar, Callable
 
 from botocore.client import BaseClient
 from s3transfer.compat import MAXINT as MAXINT
@@ -126,7 +126,8 @@ class TransferState:
     def jobs_to_complete(self, val: int) -> None: ...
     def decrement_jobs_to_complete(self) -> int: ...
 
-class TransferMonitorManager(BaseManager): ...
+class TransferMonitorManager(BaseManager):
+    TransferMonitor: Callable[..., TransferMonitor]
 
 class BaseS3TransferProcess(multiprocessing.Process):
     def __init__(self, client_factory: ClientFactory) -> None: ...

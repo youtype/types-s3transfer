@@ -1,27 +1,21 @@
 packages:
-- name: s3transfer
-  path: ./s3transfer-stubs
-  checks:
-    flake8: false
-    pyright: false
-    mypy: false
-    stubtest: true
-  snapshots:
-    stubtest: |-
-      error: s3transfer.compat.BaseManager.shutdown is not present at runtime
-      Stub: at line 152
-      def (self: multiprocessing.managers.BaseManager)
-      Runtime:
-      MISSING
+  - name: s3transfer
+    path: ./s3transfer-stubs
+    checks:
+      flake8: false
+      pyright: false
+      mypy: false
+      stubtest: true
+    snapshots:
+      stubtest: |-
+        error: s3transfer.compat.BaseManager.shutdown is not present at runtime
+        Stub: at line 150 in file ./s3transfer-stubs/compat.pyi
+        def (self: multiprocessing.managers.BaseManager)
+        Runtime:
+        MISSING
 
-      error: s3transfer.processpool.BaseManager.shutdown is not present at runtime
-      Stub: at line 152
-      def (self: multiprocessing.managers.BaseManager)
-      Runtime:
-      MISSING
-
-      error: s3transfer.processpool.TransferMonitorManager.TransferMonitor is not present in stub
-      Stub: in file ./s3transfer-stubs/processpool.pyi
-      MISSING
-      Runtime: at line 721 in file ./multiprocessing/managers.py
-      <function BaseManager.register.<locals>.temp at HASH>
+        error: s3transfer.processpool.BaseManager.shutdown is not present at runtime
+        Stub: at line 150 in file ./s3transfer-stubs/processpool.pyi
+        def (self: multiprocessing.managers.BaseManager)
+        Runtime:
+        MISSING
