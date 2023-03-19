@@ -1,5 +1,6 @@
 import logging
-from typing import Any, Callable, Dict, List, Mapping, NamedTuple, Optional, Type
+from collections.abc import Callable, Mapping
+from typing import Any, Dict, List, NamedTuple, Optional, Type
 
 from s3transfer.compat import MAXINT as MAXINT
 from s3transfer.exceptions import TransferNotDoneError as TransferNotDoneError

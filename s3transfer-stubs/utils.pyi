@@ -1,19 +1,6 @@
 import logging
-from typing import (
-    IO,
-    Any,
-    Callable,
-    Dict,
-    Iterable,
-    Iterator,
-    List,
-    Optional,
-    Sequence,
-    Tuple,
-    Type,
-    TypeVar,
-    Union,
-)
+from collections.abc import Callable, Iterable, Iterator, Sequence
+from typing import IO, Any, Dict, List, Optional, Tuple, Type, TypeVar, Union
 
 from botocore.awsrequest import AWSRequest
 from s3transfer.compat import SOCKET_ERROR as SOCKET_ERROR

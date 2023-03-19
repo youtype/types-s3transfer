@@ -1,18 +1,7 @@
 import logging
+from collections.abc import Callable, Iterator, Mapping, Sequence
 from io import BytesIO
-from typing import (
-    IO,
-    Any,
-    Callable,
-    Dict,
-    Iterator,
-    Mapping,
-    Optional,
-    Sequence,
-    Type,
-    TypeVar,
-    Union,
-)
+from typing import IO, Any, Dict, Optional, Type, TypeVar, Union
 
 from awscrt.auth import AwsCredentials
 from awscrt.http import HttpRequest
