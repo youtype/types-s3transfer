@@ -1,6 +1,5 @@
 import logging
-from collections.abc import Mapping, Sequence
-from typing import IO, Any, List, Optional, Set, Type, TypeVar, Union
+from typing import IO, Any, List, Mapping, Optional, Sequence, Set, Type, TypeVar, Union
 
 from botocore.client import BaseClient
 from s3transfer.bandwidth import BandwidthLimiter as BandwidthLimiter

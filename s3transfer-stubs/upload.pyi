@@ -1,5 +1,4 @@
-from collections.abc import Callable, Iterator, Sequence
-from typing import IO, Any, List, Optional, Tuple, TypeVar, Union
+from typing import IO, Any, Callable, Iterator, List, Optional, Sequence, Tuple, TypeVar, Union
 
 from s3transfer.bandwidth import BandwidthLimiter
 from s3transfer.compat import readable as readable

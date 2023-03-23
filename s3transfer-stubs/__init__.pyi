@@ -1,7 +1,6 @@
 import logging
-from collections.abc import Callable, Iterator, Mapping
 from queue import Queue
-from typing import IO, Any, Dict, List, Optional, Type, TypeVar, Union
+from typing import IO, Any, Callable, Dict, Iterator, List, Mapping, Optional, Type, TypeVar, Union
 
 from botocore.awsrequest import AWSRequest
 from botocore.client import BaseClient
