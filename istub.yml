@@ -6,16 +6,3 @@ packages:
       pyright: false
       mypy: false
       stubtest: true
-    snapshots:
-      stubtest: |-
-        error: s3transfer.compat.BaseManager.shutdown is not present at runtime
-        Stub: in file ./s3transfer-stubs/compat.pyi:8
-        def (self: s3transfer.compat.BaseManager)
-        Runtime:
-        MISSING
-
-        error: s3transfer.processpool.BaseManager.shutdown is not present at runtime
-        Stub: in file ./s3transfer-stubs/processpool.pyi:8
-        def (self: s3transfer.compat.BaseManager)
-        Runtime:
-        MISSING

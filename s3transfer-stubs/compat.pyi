@@ -4,8 +4,7 @@ from typing import IO, Any, Callable, Type, Union
 
 rename_file = os.rename
 
-class BaseManager(_BaseManager):
-    def shutdown(self) -> None: ...
+class BaseManager(_BaseManager): ...
 
 def accepts_kwargs(func: Callable[..., Any]) -> bool: ...
 
