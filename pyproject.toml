@@ -16,7 +16,7 @@ src_paths = []
 
 [tool.poetry]
 name = "types-s3transfer"
-version = "0.6.0.post7"
+version = "0.6.1"
 description = "Type annotations and code completion for s3transfer"
 authors = ["Vlad Emelianov <vlad.emelianov.nz@gmail.com>"]
 license = "MIT"
