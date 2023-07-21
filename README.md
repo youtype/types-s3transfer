@@ -3,7 +3,7 @@
 [![PyPI - types-s3transfer](https://img.shields.io/pypi/v/types-s3transfer.svg?color=blue&label=types-s3transfer)](https://pypi.org/project/types-s3transfer)
 [![PyPI - s3transfer](https://img.shields.io/pypi/v/s3transfer.svg?color=blue&label=s3transfer)](https://pypi.org/project/s3transfer)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/types-s3transfer.svg?color=blue)](https://pypi.org/project/types-s3transfer)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/types-s3transfer?color=blue)](https://pypistats.org/packages/types-s3transfer)
+[![PyPI - Downloads](https://static.pepy.tech/badge/types-s3transfer)](https://pepy.tech/project/types-s3transfer)
 
 ![boto3.typed](https://github.com/youtype/mypy_boto3_builder/raw/main/logo.png)
 
