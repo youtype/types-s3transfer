@@ -1,4 +1,4 @@
-name: Publish
+name: Publish types-s3transfer
 concurrency: publish
 
 on:
