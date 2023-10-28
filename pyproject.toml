@@ -1,12 +1,7 @@
 [tool.black]
 line-length = 100
 include = '(s3transfer-stubs)/.*\.pyi?$'
-target-version = [
-    'py37',
-    'py38',
-    'py39',
-    'py310',
-]
+target-version = ['py37', 'py38', 'py39', 'py310']
 preview = true
 
 [tool.isort]
@@ -38,14 +33,13 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: Implementation :: CPython",
     "Typing :: Stubs Only",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-packages = [
-    { include = "s3transfer-stubs" },
-]
+packages = [{ include = "s3transfer-stubs" }]
 include = [
     "s3transfer-stubs/py.typed",
     "s3transfer-stubs/*.pyi",
@@ -77,14 +71,8 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pyright]
-include = [
-    "s3transfer-stubs",
-]
-exclude = [
-    "**/__pycache__",
-    "tests",
-    "typestubs",
-]
+include = ["s3transfer-stubs"]
+exclude = ["**/__pycache__", "tests", "typestubs"]
 reportMissingImports = "error"
 reportMissingTypeStubs = false
 reportMissingTypeArgument = "error"

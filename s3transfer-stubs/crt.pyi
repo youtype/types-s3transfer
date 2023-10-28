@@ -131,6 +131,7 @@ class CRTTransferCoordinator:
         s3_request: Optional[S3Request] = ...,  # type: ignore
     ) -> None:
         self.transfer_id: str
+
     @property
     def s3_request(self) -> S3Request: ...
     def set_done_callbacks_complete(self) -> None: ...
