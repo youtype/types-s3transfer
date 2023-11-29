@@ -14,12 +14,10 @@ from typing import (
     Union,
 )
 
-from awscrt.auth import AwsCredentials
+from awscrt.auth import AwsCredentials, AwsCredentialsProvider
 from awscrt.http import HttpRequest
-from awscrt.s3 import S3Client, S3Request
-from botocore.credentials import CredentialProvider
+from awscrt.s3 import CrossProcessLock, S3Client, S3Request
 from botocore.session import Session
-from s3transfer.constants import GB as GB
 from s3transfer.constants import MB as MB
 from s3transfer.exceptions import TransferNotDoneError as TransferNotDoneError
 from s3transfer.futures import BaseTransferFuture as BaseTransferFuture
@@ -31,17 +29,15 @@ from s3transfer.utils import get_callbacks as get_callbacks
 
 _R = TypeVar("_R")
 
-logger: logging.Logger
+logger: logging.Logger = ...
+CRT_S3_PROCESS_LOCK: Optional[CrossProcessLock] = ...
 
-class CRTCredentialProviderAdapter:
-    def __init__(self, botocore_credential_provider: CredentialProvider) -> None: ...
-    def __call__(self) -> AwsCredentials: ...
-
+def acquire_crt_s3_process_lock(name: str) -> CrossProcessLock: ...
 def create_s3_crt_client(
     region: str,
-    botocore_credential_provider: Optional[CredentialProvider] = ...,
+    crt_credentials_provider: Optional[AwsCredentialsProvider] = ...,
     num_threads: Optional[int] = ...,
-    target_throughput: float = ...,
+    target_throughput: Optional[float] = ...,
     part_size: int = ...,
     use_ssl: bool = ...,
     verify: Optional[Union[bool, str]] = ...,
@@ -112,6 +108,7 @@ class BaseCRTRequestSerializer:
     def serialize_http_request(
         self, transfer_type: str, future: CRTTransferFuture
     ) -> HttpRequest: ...
+    def translate_crt_exception(self, exception: Exception) -> Optional[Exception]: ...
 
 class BotocoreCRTRequestSerializer(BaseCRTRequestSerializer):
     def __init__(
@@ -124,11 +121,17 @@ class BotocoreCRTRequestSerializer(BaseCRTRequestSerializer):
 class FakeRawResponse(BytesIO):
     def stream(self, amt: int = ..., decode_content: Optional[bool] = ...) -> Iterator[bytes]: ...
 
+class BotocoreCRTCredentialsWrapper:
+    def __init__(self, resolved_botocore_credentials: AwsCredentials) -> None: ...
+    def __call__(self) -> AwsCredentials: ...
+    def to_crt_credentials_provider(self) -> AwsCredentialsProvider: ...
+
 class CRTTransferCoordinator:
     def __init__(
         self,
         transfer_id: Optional[str] = ...,
-        s3_request: Optional[S3Request] = ...,  # type: ignore
+        s3_request: Optional[S3Request] = ...,
+        exception_translator: Optional[Callable[[Exception], Optional[Exception]]] = ...,
     ) -> None:
         self.transfer_id: str
 
@@ -139,6 +142,7 @@ class CRTTransferCoordinator:
     def set_exception(self, exception: BaseException, override: bool = ...) -> None: ...
     def cancel(self) -> None: ...
     def result(self, timeout: Optional[float] = ...) -> None: ...
+    def handle_exception(self, exc: Exception) -> None: ...
     def done(self) -> bool: ...
     def set_s3_request(
         self,
@@ -178,3 +182,7 @@ class RenameTempFileHandler:
 class AfterDoneHandler:
     def __init__(self, coordinator: CRTTransferCoordinator) -> None: ...
     def __call__(self, **kwargs: Any) -> None: ...
+
+class OnBodyFileObjWriter:
+    def __init__(self, fileobj: IO[bytes]) -> None: ...
+    def __call__(self, chunk: bytes, **kwargs: Any) -> None: ...
