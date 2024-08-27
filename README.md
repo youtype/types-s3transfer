@@ -18,7 +18,6 @@ This package is a part of [mypy_boto3_builder](https://github.com/youtype/mypy_b
 - [types-s3transfer](#types-s3transfer)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Latest changes](#latest-changes)
   - [Versioning](#versioning)
   - [Support and contributing](#support-and-contributing)
 
@@ -32,10 +31,6 @@ python -m pip install types-s3transfer
 ## Usage
 
 Use [mypy](https://github.com/python/mypy) or [pyright](https://github.com/microsoft/pyright) for type checking.
-
-## Latest changes
-
-Full changelog can be found in [Releases](https://github.com/youtype/types-s3transfer/releases).
 
 ## Versioning
 
