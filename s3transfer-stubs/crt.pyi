@@ -6,6 +6,7 @@ from typing import (
     Callable,
     Dict,
     Iterator,
+    List,
     Mapping,
     Optional,
     Sequence,
@@ -26,6 +27,7 @@ from s3transfer.subscribers import BaseSubscriber
 from s3transfer.utils import CallArgs as CallArgs
 from s3transfer.utils import OSUtils as OSUtils
 from s3transfer.utils import get_callbacks as get_callbacks
+from s3transfer.manager import TransferManager
 
 _R = TypeVar("_R")
 
@@ -44,6 +46,11 @@ def create_s3_crt_client(
 ) -> S3Client: ...
 
 class CRTTransferManager:
+    ALLOWED_DOWNLOAD_ARGS: List[str] = ...
+    ALLOWED_UPLOAD_ARGS: List[str] = ...
+    ALLOWED_DELETE_ARGS: List[str] = ...
+    VALIDATE_SUPPORTED_BUCKET_VALUES: bool = ...
+
     def __init__(
         self,
         crt_s3_client: S3Client,  # type: ignore

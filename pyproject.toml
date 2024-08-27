@@ -31,6 +31,7 @@ config-settings = { editable-mode = "strict" }
 dev-dependencies = [
     "setuptools",
     "pre-commit",
+    "awscrt",
     "s3transfer",
     "botocore",
     "mypy",
