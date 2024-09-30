@@ -81,7 +81,7 @@ jobs:
         env:
           UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
-          rm -rf dist/*
+          rm -rf dist/* || true
           uv build --sdist --wheel
           uv publish
       - name: Report status
