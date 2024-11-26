@@ -60,6 +60,7 @@ packages = ["s3transfer-stubs"]
 [tool.pyright]
 include = ["s3transfer-stubs"]
 exclude = ["**/__pycache__", "tests", "typestubs"]
+ignore = ["test.py"]
 reportMissingImports = "error"
 reportMissingTypeStubs = false
 reportMissingTypeArgument = "error"
