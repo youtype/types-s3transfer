@@ -1,18 +1,17 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 import logging
 from io import BytesIO
 from typing import (
     IO,
     Any,
     Callable,
-    Dict,
     Iterator,
-    List,
     Mapping,
-    Optional,
     Sequence,
-    Type,
     TypeVar,
-    Union,
 )
 
 from awscrt.auth import AwsCredentials, AwsCredentialsProvider
@@ -27,87 +26,89 @@ from s3transfer.subscribers import BaseSubscriber
 from s3transfer.utils import CallArgs as CallArgs
 from s3transfer.utils import OSUtils as OSUtils
 from s3transfer.utils import get_callbacks as get_callbacks
-from s3transfer.manager import TransferManager
 
 _R = TypeVar("_R")
 
 logger: logging.Logger = ...
-CRT_S3_PROCESS_LOCK: Optional[CrossProcessLock] = ...
+CRT_S3_PROCESS_LOCK: CrossProcessLock | None = ...
 
 def acquire_crt_s3_process_lock(name: str) -> CrossProcessLock: ...
 def create_s3_crt_client(
     region: str,
-    crt_credentials_provider: Optional[AwsCredentialsProvider] = ...,
-    num_threads: Optional[int] = ...,
-    target_throughput: Optional[float] = ...,
+    crt_credentials_provider: AwsCredentialsProvider | None = ...,
+    num_threads: int | None = ...,
+    target_throughput: float | None = ...,
     part_size: int = ...,
     use_ssl: bool = ...,
-    verify: Optional[Union[bool, str]] = ...,
+    verify: bool | str | None = ...,
 ) -> S3Client: ...
 
 class CRTTransferManager:
-    ALLOWED_DOWNLOAD_ARGS: List[str] = ...
-    ALLOWED_UPLOAD_ARGS: List[str] = ...
-    ALLOWED_DELETE_ARGS: List[str] = ...
+    ALLOWED_DOWNLOAD_ARGS: list[str] = ...
+    ALLOWED_UPLOAD_ARGS: list[str] = ...
+    ALLOWED_DELETE_ARGS: list[str] = ...
     VALIDATE_SUPPORTED_BUCKET_VALUES: bool = ...
 
     def __init__(
         self,
         crt_s3_client: S3Client,  # type: ignore
         crt_request_serializer: BaseCRTRequestSerializer,
-        osutil: Optional[OSUtils] = ...,
+        osutil: OSUtils | None = ...,
     ) -> None: ...
     def __enter__(self: _R) -> _R: ...
     def __exit__(
-        self, exc_type: Type[BaseException], exc_value: BaseException, *args: Any
+        self,
+        exc_type: type[BaseException] | None,
+        exc_value: BaseException | None,
+        *args: object,
     ) -> None: ...
     def download(
         self,
         bucket: str,
         key: str,
-        fileobj: Union[IO[Any], str, bytes],
-        extra_args: Optional[Mapping[str, Any]] = ...,
-        subscribers: Optional[Sequence[BaseSubscriber]] = ...,
+        fileobj: IO[Any] | str | bytes,
+        extra_args: Mapping[str, Any] | None = ...,
+        subscribers: Sequence[BaseSubscriber] | None = ...,
     ) -> CRTTransferFuture: ...
     def upload(
         self,
-        fileobj: Union[IO[Any], str, bytes],
+        fileobj: IO[Any] | str | bytes,
         bucket: str,
         key: str,
-        extra_args: Optional[Mapping[str, Any]] = ...,
-        subscribers: Optional[Sequence[BaseSubscriber]] = ...,
+        extra_args: Mapping[str, Any] | None = ...,
+        subscribers: Sequence[BaseSubscriber] | None = ...,
     ) -> CRTTransferFuture: ...
     def delete(
         self,
         bucket: str,
         key: str,
-        extra_args: Optional[Mapping[str, Any]] = ...,
-        subscribers: Optional[Sequence[BaseSubscriber]] = ...,
+        extra_args: Mapping[str, Any] | None = ...,
+        subscribers: Sequence[BaseSubscriber] | None = ...,
     ) -> CRTTransferFuture: ...
     def shutdown(self, cancel: bool = ...) -> None: ...
 
 class CRTTransferMeta(BaseTransferMeta):
     def __init__(
-        self, transfer_id: Optional[str] = ..., call_args: Optional[Mapping[str, Any]] = ...
+        self, transfer_id: str | None = ..., call_args: Mapping[str, Any] | None = ...
     ) -> None: ...
     @property
-    def call_args(self) -> Dict[str, Any]: ...
+    def call_args(self) -> dict[str, Any]: ...
     @property
     def transfer_id(self) -> str: ...
     @property
-    def user_context(self) -> Dict[str, Any]: ...
+    def user_context(self) -> dict[str, Any]: ...
 
 class CRTTransferFuture(BaseTransferFuture):
     def __init__(
         self,
-        meta: Optional[CRTTransferMeta] = ...,
-        coordinator: Optional[CRTTransferCoordinator] = ...,
+        meta: CRTTransferMeta | None = ...,
+        coordinator: CRTTransferCoordinator | None = ...,
     ) -> None: ...
     @property
     def meta(self) -> CRTTransferMeta: ...
     def done(self) -> bool: ...
     # FIXME: Signature of "result" incompatible with supertype "BaseTransferFuture"
-    def result(self, timeout: Optional[float] = ...) -> None: ...  # type: ignore
+    def result(self, timeout: float | None = ...) -> None: ...  # type: ignore
     def cancel(self) -> None: ...
     def set_exception(self, exception: BaseException) -> None: ...
 
@@ -115,18 +116,16 @@ class BaseCRTRequestSerializer:
     def serialize_http_request(
         self, transfer_type: str, future: CRTTransferFuture
     ) -> HttpRequest: ...
-    def translate_crt_exception(self, exception: Exception) -> Optional[Exception]: ...
+    def translate_crt_exception(self, exception: Exception) -> Exception | None: ...
 
 class BotocoreCRTRequestSerializer(BaseCRTRequestSerializer):
-    def __init__(
-        self, session: Session, client_kwargs: Optional[Mapping[str, Any]] = ...
-    ) -> None: ...
+    def __init__(self, session: Session, client_kwargs: Mapping[str, Any] | None = ...) -> None: ...
     def serialize_http_request(
         self, transfer_type: str, future: CRTTransferFuture
     ) -> HttpRequest: ...
 
 class FakeRawResponse(BytesIO):
-    def stream(self, amt: int = ..., decode_content: Optional[bool] = ...) -> Iterator[bytes]: ...
+    def stream(self, amt: int = ..., decode_content: bool | None = ...) -> Iterator[bytes]: ...
 
 class BotocoreCRTCredentialsWrapper:
     def __init__(self, resolved_botocore_credentials: AwsCredentials) -> None: ...
@@ -136,19 +135,19 @@ class BotocoreCRTCredentialsWrapper:
 class CRTTransferCoordinator:
     def __init__(
         self,
-        transfer_id: Optional[str] = ...,
-        s3_request: Optional[S3Request] = ...,
-        exception_translator: Optional[Callable[[Exception], Optional[Exception]]] = ...,
+        transfer_id: str | None = ...,
+        s3_request: S3Request | None = ...,
+        exception_translator: Callable[[Exception], Exception | None] | None = ...,
     ) -> None:
         self.transfer_id: str
 
     @property
     def s3_request(self) -> S3Request: ...
     def set_done_callbacks_complete(self) -> None: ...
-    def wait_until_on_done_callbacks_complete(self, timeout: Optional[float] = ...) -> None: ...
+    def wait_until_on_done_callbacks_complete(self, timeout: float | None = ...) -> None: ...
     def set_exception(self, exception: BaseException, override: bool = ...) -> None: ...
     def cancel(self) -> None: ...
-    def result(self, timeout: Optional[float] = ...) -> None: ...
+    def result(self, timeout: float | None = ...) -> None: ...
     def handle_exception(self, exc: Exception) -> None: ...
     def done(self) -> bool: ...
     def set_s3_request(
@@ -167,13 +166,13 @@ class S3ClientArgsCreator:
         coordinator: CRTTransferCoordinator,
         future: CRTTransferFuture,
         on_done_after_calls: Sequence[Callable[..., Any]],
-    ) -> Dict[str, Any]: ...
+    ) -> dict[str, Any]: ...
     def get_crt_callback(
         self,
         future: CRTTransferFuture,
         callback_type: str,
-        before_subscribers: Optional[Sequence[BaseSubscriber]] = ...,
-        after_subscribers: Optional[Sequence[BaseSubscriber]] = ...,
+        before_subscribers: Sequence[BaseSubscriber] | None = ...,
+        after_subscribers: Sequence[BaseSubscriber] | None = ...,
     ) -> Callable[..., Any]: ...
 
 class RenameTempFileHandler:

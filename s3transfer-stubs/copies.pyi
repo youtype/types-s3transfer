@@ -1,4 +1,6 @@
-from typing import Dict, List
+"""
+Copyright 2024 Vlad Emelianov
+"""
 
 from s3transfer.tasks import CompleteMultipartUploadTask as CompleteMultipartUploadTask
 from s3transfer.tasks import CreateMultipartUploadTask as CreateMultipartUploadTask
@@ -10,10 +12,10 @@ from s3transfer.utils import get_callbacks as get_callbacks
 from s3transfer.utils import get_filtered_dict as get_filtered_dict
 
 class CopySubmissionTask(SubmissionTask):
-    EXTRA_ARGS_TO_HEAD_ARGS_MAPPING: Dict[str, str]
-    UPLOAD_PART_COPY_ARGS: List[str]
-    CREATE_MULTIPART_ARGS_BLACKLIST: List[str]
-    COMPLETE_MULTIPART_ARGS: List[str]
+    EXTRA_ARGS_TO_HEAD_ARGS_MAPPING: dict[str, str]
+    UPLOAD_PART_COPY_ARGS: list[str]
+    CREATE_MULTIPART_ARGS_BLACKLIST: list[str]
+    COMPLETE_MULTIPART_ARGS: list[str]
 
 class CopyObjectTask(Task): ...
 class CopyPartTask(Task): ...

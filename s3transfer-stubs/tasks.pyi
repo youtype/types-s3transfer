@@ -1,5 +1,9 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 import logging
-from typing import Any, Callable, Dict, Optional, Sequence
+from typing import Any, Callable, Sequence
 
 from s3transfer.futures import TransferCoordinator
 from s3transfer.utils import get_callbacks as get_callbacks
@@ -10,9 +14,9 @@ class Task:
     def __init__(
         self,
         transfer_coordinator: TransferCoordinator,
-        main_kwargs: Optional[Dict[str, Any]] = ...,
-        pending_main_kwargs: Optional[Dict[str, Any]] = ...,
-        done_callbacks: Optional[Sequence[Callable[..., Any]]] = ...,
+        main_kwargs: dict[str, Any] | None = ...,
+        pending_main_kwargs: dict[str, Any] | None = ...,
+        done_callbacks: Sequence[Callable[..., Any]] | None = ...,
         is_final: bool = ...,
     ) -> None: ...
     @property
