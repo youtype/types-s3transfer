@@ -1,2 +1,2 @@
-s3transfer-stubs/py.typed
-s3transfer-stubs/*.pyi
+include s3transfer-stubs/py.typed
+include s3transfer-stubs/*.pyi
