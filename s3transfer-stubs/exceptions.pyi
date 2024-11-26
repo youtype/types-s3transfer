@@ -1,3 +1,7 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from concurrent.futures import CancelledError as CancelledError
 
 class RetriesExceededError(Exception):

@@ -1,5 +1,9 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 import logging
-from typing import IO, Any, List, Mapping, Optional, Sequence, Set, Type, TypeVar, Union
+from typing import IO, Any, Mapping, Sequence, TypeVar
 
 from botocore.client import BaseClient
 from s3transfer.bandwidth import BandwidthLimiter as BandwidthLimiter
@@ -59,21 +63,21 @@ class TransferConfig:
         num_download_attempts: int = ...,
         max_in_memory_upload_chunks: int = ...,
         max_in_memory_download_chunks: int = ...,
-        max_bandwidth: Optional[int] = ...,
+        max_bandwidth: int | None = ...,
     ) -> None: ...
 
 class TransferManager:
-    ALLOWED_DOWNLOAD_ARGS: List[str]
-    ALLOWED_UPLOAD_ARGS: List[str]
-    ALLOWED_COPY_ARGS: List[str]
-    ALLOWED_DELETE_ARGS: List[str]
+    ALLOWED_DOWNLOAD_ARGS: list[str]
+    ALLOWED_UPLOAD_ARGS: list[str]
+    ALLOWED_COPY_ARGS: list[str]
+    ALLOWED_DELETE_ARGS: list[str]
     VALIDATE_SUPPORTED_BUCKET_VALUES: bool
     def __init__(
         self,
         client: BaseClient,
-        config: Optional[TransferConfig] = ...,
-        osutil: Optional[OSUtils] = ...,
-        executor_cls: Optional[Type[BaseExecutor]] = ...,
+        config: TransferConfig | None = ...,
+        osutil: OSUtils | None = ...,
+        executor_cls: type[BaseExecutor] | None = ...,
     ) -> None: ...
     @property
     def client(self) -> BaseClient: ...
@@ -81,47 +85,50 @@ class TransferManager:
     def config(self) -> TransferConfig: ...
     def upload(
         self,
-        fileobj: Union[IO[Any], str, bytes],
+        fileobj: IO[Any] | str | bytes,
         bucket: str,
         key: str,
-        extra_args: Optional[Mapping[str, Any]] = ...,
-        subscribers: Optional[Sequence[BaseSubscriber]] = ...,
+        extra_args: Mapping[str, Any] | None = ...,
+        subscribers: Sequence[BaseSubscriber] | None = ...,
     ) -> TransferFuture: ...
     def download(
         self,
         bucket: str,
         key: str,
-        fileobj: Union[IO[Any], str, bytes],
-        extra_args: Optional[Mapping[str, Any]] = ...,
-        subscribers: Optional[Sequence[BaseSubscriber]] = ...,
+        fileobj: IO[Any] | str | bytes,
+        extra_args: Mapping[str, Any] | None = ...,
+        subscribers: Sequence[BaseSubscriber] | None = ...,
     ) -> TransferFuture: ...
     def copy(
         self,
         copy_source: Mapping[str, Any],
         bucket: str,
         key: str,
-        extra_args: Optional[Mapping[str, Any]] = ...,
-        subscribers: Optional[Sequence[BaseSubscriber]] = ...,
-        source_client: Optional[BaseClient] = ...,
+        extra_args: Mapping[str, Any] | None = ...,
+        subscribers: Sequence[BaseSubscriber] | None = ...,
+        source_client: BaseClient | None = ...,
     ) -> TransferFuture: ...
     def delete(
         self,
         bucket: str,
         key: str,
-        extra_args: Optional[Mapping[str, Any]] = ...,
-        subscribers: Optional[Sequence[BaseSubscriber]] = ...,
+        extra_args: Mapping[str, Any] | None = ...,
+        subscribers: Sequence[BaseSubscriber] | None = ...,
     ) -> TransferFuture: ...
     def __enter__(self: _R) -> _R: ...
     def __exit__(
-        self, exc_type: Type[BaseException], exc_value: BaseException, *args: Any
+        self,
+        exc_type: type[BaseException] | None,
+        exc_value: BaseException | None,
+        *args: object,
     ) -> None: ...
     def shutdown(self, cancel: bool = ..., cancel_msg: str = ...) -> None: ...
 
 class TransferCoordinatorController:
     def __init__(self) -> None: ...
     @property
-    def tracked_transfer_coordinators(self) -> Set[TransferCoordinator]: ...
+    def tracked_transfer_coordinators(self) -> set[TransferCoordinator]: ...
     def add_transfer_coordinator(self, transfer_coordinator: TransferCoordinator) -> None: ...
     def remove_transfer_coordinator(self, transfer_coordinator: TransferCoordinator) -> None: ...
-    def cancel(self, msg: str = ..., exc_type: Type[BaseException] = ...) -> None: ...
+    def cancel(self, msg: str = ..., exc_type: type[BaseException] = ...) -> None: ...
     def wait(self) -> None: ...

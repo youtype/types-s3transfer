@@ -1,7 +1,11 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 import logging
 import multiprocessing
 from queue import Queue
-from typing import Any, Callable, Dict, Generator, Mapping, NamedTuple, Optional, Type, TypeVar
+from typing import Any, Callable, Generator, Mapping, NamedTuple, TypeVar
 
 from botocore.client import BaseClient
 from s3transfer.compat import MAXINT as MAXINT
@@ -31,7 +35,7 @@ class DownloadFileRequest(NamedTuple):
     bucket: str
     key: str
     filename: str
-    extra_args: Dict[str, Any]
+    extra_args: dict[str, Any]
     expected_size: int
 
 class GetObjectJob(NamedTuple):
@@ -39,7 +43,7 @@ class GetObjectJob(NamedTuple):
     bucket: str
     key: str
     temp_filename: str
-    extra_args: Dict[str, Any]
+    extra_args: dict[str, Any]
     offset: int
     filename: str
 
@@ -59,21 +63,24 @@ class ProcessTransferConfig:
 class ProcessPoolDownloader:
     def __init__(
         self,
-        client_kwargs: Optional[Mapping[str, Any]] = ...,
-        config: Optional[ProcessTransferConfig] = ...,
+        client_kwargs: Mapping[str, Any] | None = ...,
+        config: ProcessTransferConfig | None = ...,
     ) -> None: ...
     def download_file(
         self,
         bucket: str,
         key: str,
         filename: str,
-        extra_args: Optional[Mapping[str, Any]] = ...,
-        expected_size: Optional[int] = ...,
+        extra_args: Mapping[str, Any] | None = ...,
+        expected_size: int | None = ...,
     ) -> TransferFuture: ...
     def shutdown(self) -> None: ...
     def __enter__(self: _R) -> _R: ...
     def __exit__(
-        self, exc_type: Type[BaseException], exc_value: BaseException, *args: Any
+        self,
+        exc_type: type[BaseException] | None,
+        exc_value: BaseException | None,
+        *args: object,
     ) -> None: ...
 
 class ProcessPoolTransferFuture(BaseTransferFuture):
@@ -87,14 +94,14 @@ class ProcessPoolTransferFuture(BaseTransferFuture):
 class ProcessPoolTransferMeta(BaseTransferMeta):
     def __init__(self, transfer_id: str, call_args: Mapping[str, Any]) -> None: ...
     @property
-    def call_args(self) -> Dict[str, Any]: ...
+    def call_args(self) -> dict[str, Any]: ...
     @property
     def transfer_id(self) -> str: ...
     @property
-    def user_context(self) -> Dict[str, Any]: ...
+    def user_context(self) -> dict[str, Any]: ...
 
 class ClientFactory:
-    def __init__(self, client_kwargs: Optional[Mapping[str, Any]] = ...) -> None: ...
+    def __init__(self, client_kwargs: Mapping[str, Any] | None = ...) -> None: ...
     def create_client(self) -> BaseClient: ...
 
 class TransferMonitor:
@@ -105,7 +112,7 @@ class TransferMonitor:
     def poll_for_result(self, transfer_id: str) -> None: ...
     def notify_exception(self, transfer_id: str, exception: BaseException) -> None: ...
     def notify_cancel_all_in_progress(self) -> None: ...
-    def get_exception(self, transfer_id: str) -> Optional[BaseException]: ...
+    def get_exception(self, transfer_id: str) -> BaseException | None: ...
     def notify_expected_jobs_to_complete(self, transfer_id: str, num_jobs: int) -> None: ...
     def notify_job_complete(self, transfer_id: str) -> int: ...
 
@@ -116,7 +123,7 @@ class TransferState:
     def set_done(self) -> None: ...
     def wait_till_done(self) -> None: ...
     @property
-    def exception(self) -> Optional[BaseException]: ...
+    def exception(self) -> BaseException | None: ...
     @exception.setter
     def exception(self, val: BaseException) -> None: ...
     @property

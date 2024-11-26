@@ -1,5 +1,9 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 import logging
-from typing import IO, Any, Callable, Dict, List, Optional, TypeVar, Union
+from typing import IO, Any, Callable, TypeVar
 
 from s3transfer.compat import seekable as seekable
 from s3transfer.exceptions import RetriesExceededError as RetriesExceededError
@@ -34,11 +38,9 @@ class DownloadOutputManager:
     def get_download_task_tag(self) -> TaskTag: ...
     def get_fileobj_for_io_writes(self, transfer_future: TransferFuture) -> IO[Any]: ...
     def queue_file_io_task(
-        self, fileobj: Union[IO[Any], str, bytes], data: str, offset: int
+        self, fileobj: IO[Any] | str | bytes, data: str, offset: int
     ) -> None: ...
-    def get_io_write_task(
-        self, fileobj: Union[IO[Any], str, bytes], data: str, offset: int
-    ) -> Task: ...
+    def get_io_write_task(self, fileobj: IO[Any] | str | bytes, data: str, offset: int) -> Task: ...
     def get_final_io_task(self) -> Task: ...
 
 class DownloadFilenameOutputManager(DownloadOutputManager):
@@ -65,7 +67,7 @@ class DownloadNonSeekableOutputManager(DownloadOutputManager):
         osutil: OSUtils,
         transfer_coordinator: TransferCoordinator,
         io_executor: BoundedExecutor,
-        defer_queue: Optional[DeferQueue] = ...,
+        defer_queue: DeferQueue | None = ...,
     ) -> None: ...
     @classmethod
     def is_compatible(cls, download_target: IO[Any], osutil: OSUtils) -> bool: ...
@@ -73,11 +75,9 @@ class DownloadNonSeekableOutputManager(DownloadOutputManager):
     def get_fileobj_for_io_writes(self, transfer_future: TransferFuture) -> IO[Any]: ...
     def get_final_io_task(self) -> Task: ...
     def queue_file_io_task(
-        self, fileobj: Union[IO[Any], str, bytes], data: str, offset: int
+        self, fileobj: IO[Any] | str | bytes, data: str, offset: int
     ) -> None: ...
-    def get_io_write_task(
-        self, fileobj: Union[IO[Any], str, bytes], data: str, offset: int
-    ) -> Task: ...
+    def get_io_write_task(self, fileobj: IO[Any] | str | bytes, data: str, offset: int) -> Task: ...
 
 class DownloadSpecialFilenameOutputManager(DownloadNonSeekableOutputManager):
     def __init__(
@@ -85,7 +85,7 @@ class DownloadSpecialFilenameOutputManager(DownloadNonSeekableOutputManager):
         osutil: OSUtils,
         transfer_coordinator: TransferCoordinator,
         io_executor: BoundedExecutor,
-        defer_queue: Optional[DeferQueue] = ...,
+        defer_queue: DeferQueue | None = ...,
     ) -> None: ...
     @classmethod
     def is_compatible(cls, download_target: IO[Any], osutil: OSUtils) -> bool: ...
@@ -104,9 +104,9 @@ class CompleteDownloadNOOPTask(Task):
     def __init__(
         self,
         transfer_coordinator: TransferCoordinator,
-        main_kwargs: Optional[Dict[str, Any]] = ...,
-        pending_main_kwargs: Optional[Dict[str, Any]] = ...,
-        done_callbacks: Optional[Callable[..., Any]] = ...,
+        main_kwargs: dict[str, Any] | None = ...,
+        pending_main_kwargs: dict[str, Any] | None = ...,
+        done_callbacks: Callable[..., Any] | None = ...,
         is_final: bool = ...,
     ) -> None: ...
 
@@ -118,4 +118,4 @@ class DownloadChunkIterator:
 
 class DeferQueue:
     def __init__(self) -> None: ...
-    def request_writes(self, offset: int, data: str) -> List[Dict[str, Any]]: ...
+    def request_writes(self, offset: int, data: str) -> list[dict[str, Any]]: ...

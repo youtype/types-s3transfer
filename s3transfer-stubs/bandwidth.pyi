@@ -1,4 +1,8 @@
-from typing import IO, Any, Optional, TypeVar, Union
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
+from typing import IO, Any, TypeVar
 
 from s3transfer.futures import TransferCoordinator
 
@@ -16,12 +20,10 @@ class TimeUtils:
     def sleep(self, value: float) -> None: ...
 
 class BandwidthLimiter:
-    def __init__(
-        self, leaky_bucket: LeakyBucket, time_utils: Optional[TimeUtils] = ...
-    ) -> None: ...
+    def __init__(self, leaky_bucket: LeakyBucket, time_utils: TimeUtils | None = ...) -> None: ...
     def get_bandwith_limited_stream(
         self,
-        fileobj: Union[IO[Any], str, bytes],
+        fileobj: IO[Any] | str | bytes,
         transfer_coordinator: TransferCoordinator,
         enabled: bool = ...,
     ) -> BandwidthLimitedStream: ...
@@ -29,10 +31,10 @@ class BandwidthLimiter:
 class BandwidthLimitedStream:
     def __init__(
         self,
-        fileobj: Union[IO[Any], str, bytes],
+        fileobj: IO[Any] | str | bytes,
         leaky_bucket: LeakyBucket,
         transfer_coordinator: TransferCoordinator,
-        time_utils: Optional[TimeUtils] = ...,
+        time_utils: TimeUtils | None = ...,
         bytes_threshold: int = ...,
     ) -> None: ...
     def enable_bandwidth_limiting(self) -> None: ...
@@ -44,15 +46,15 @@ class BandwidthLimitedStream:
     def tell(self) -> int: ...
     def close(self) -> None: ...
     def __enter__(self: _R) -> _R: ...
-    def __exit__(self, *args: Any, **kwargs: Any) -> None: ...
+    def __exit__(self, *args: object, **kwargs: Any) -> None: ...
 
 class LeakyBucket:
     def __init__(
         self,
         max_rate: int,
-        time_utils: Optional[TimeUtils] = ...,
-        rate_tracker: Optional[BandwidthRateTracker] = ...,
-        consumption_scheduler: Optional[ConsumptionScheduler] = ...,
+        time_utils: TimeUtils | None = ...,
+        rate_tracker: BandwidthRateTracker | None = ...,
+        consumption_scheduler: ConsumptionScheduler | None = ...,
     ) -> None: ...
     def consume(self, amt: int, request_token: RequestToken) -> int: ...
 

@@ -1,6 +1,10 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 import logging
 from queue import Queue
-from typing import IO, Any, Callable, Dict, Iterator, List, Mapping, Optional, Type, TypeVar, Union
+from typing import IO, Any, Callable, Iterator, Mapping, TypeVar
 
 from botocore.awsrequest import AWSRequest
 from botocore.client import BaseClient
@@ -26,23 +30,23 @@ class QueueShutdownError(Exception): ...
 class ReadFileChunk:
     def __init__(
         self,
-        fileobj: Union[IO[Any], str, bytes],
+        fileobj: IO[Any] | str | bytes,
         start_byte: int,
         chunk_size: int,
         full_file_size: int,
-        callback: Optional[Callable[..., Any]] = ...,
+        callback: Callable[..., Any] | None = ...,
         enable_callback: bool = ...,
     ) -> None: ...
     @classmethod
     def from_filename(
-        cls: Type[_R],
+        cls: type[_R],
         filename: str,
         start_byte: int,
         chunk_size: int,
-        callback: Optional[Callable[..., Any]] = ...,
+        callback: Callable[..., Any] | None = ...,
         enable_callback: bool = ...,
     ) -> _R: ...
-    def read(self, amount: Optional[int] = ...) -> str: ...
+    def read(self, amount: int | None = ...) -> str: ...
     def enable_callback(self) -> None: ...
     def disable_callback(self) -> None: ...
     def seek(self, where: int) -> None: ...
@@ -50,11 +54,11 @@ class ReadFileChunk:
     def tell(self) -> int: ...
     def __len__(self) -> int: ...
     def __enter__(self: _R) -> _R: ...
-    def __exit__(self, *args: Any, **kwargs: Any) -> None: ...
+    def __exit__(self, *args: object, **kwargs: Any) -> None: ...
     def __iter__(self) -> Iterator[str]: ...
 
 class StreamReaderProgress:
-    def __init__(self, stream: Any, callback: Optional[Callable[..., Any]] = ...) -> None: ...
+    def __init__(self, stream: Any, callback: Callable[..., Any] | None = ...) -> None: ...
     def read(self, *args: Any, **kwargs: Any) -> str: ...
 
 class OSUtils:
@@ -67,13 +71,13 @@ class OSUtils:
     def rename_file(self, current_filename: str, new_filename: str) -> None: ...
 
 class MultipartUploader:
-    UPLOAD_PART_ARGS: List[str]
+    UPLOAD_PART_ARGS: list[str]
     def __init__(
         self,
         client: BaseClient,
         config: TransferConfig,
         osutil: OSUtils,
-        executor_cls: Type[BaseExecutor] = ...,
+        executor_cls: type[BaseExecutor] = ...,
     ) -> None: ...
     def upload_file(
         self,
@@ -95,7 +99,7 @@ class MultipartDownloader:
         client: BaseClient,
         config: TransferConfig,
         osutil: OSUtils,
-        executor_cls: Type[BaseExecutor] = ...,
+        executor_cls: type[BaseExecutor] = ...,
     ) -> None: ...
     def download_file(
         self,
@@ -103,8 +107,8 @@ class MultipartDownloader:
         key: str,
         filename: str,
         object_size: int,
-        extra_args: Dict[str, Any],
-        callback: Optional[Callable[..., Any]] = ...,
+        extra_args: dict[str, Any],
+        callback: Callable[..., Any] | None = ...,
     ) -> None: ...
 
 class TransferConfig:
@@ -123,27 +127,27 @@ class TransferConfig:
     ) -> None: ...
 
 class S3Transfer:
-    ALLOWED_DOWNLOAD_ARGS: List[str]
-    ALLOWED_UPLOAD_ARGS: List[str]
+    ALLOWED_DOWNLOAD_ARGS: list[str]
+    ALLOWED_UPLOAD_ARGS: list[str]
     def __init__(
         self,
         client: BaseClient,
-        config: Optional[TransferConfig] = ...,
-        osutil: Optional[OSUtils] = ...,
+        config: TransferConfig | None = ...,
+        osutil: OSUtils | None = ...,
     ) -> None: ...
     def upload_file(
         self,
         filename: str,
         bucket: str,
         key: str,
-        callback: Optional[Callable[..., Any]] = ...,
-        extra_args: Optional[Dict[str, Any]] = ...,
+        callback: Callable[..., Any] | None = ...,
+        extra_args: dict[str, Any] | None = ...,
     ) -> None: ...
     def download_file(
         self,
         bucket: str,
         key: str,
         filename: str,
-        extra_args: Optional[Dict[str, Any]] = ...,
-        callback: Optional[Callable[..., Any]] = ...,
+        extra_args: dict[str, Any] | None = ...,
+        callback: Callable[..., Any] | None = ...,
     ) -> None: ...
