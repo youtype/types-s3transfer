@@ -1,4 +1,6 @@
 """
+Type annotations for s3transfer.processpool module.
+
 Copyright 2024 Vlad Emelianov
 """
 

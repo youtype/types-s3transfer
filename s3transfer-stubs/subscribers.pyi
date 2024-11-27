@@ -1,4 +1,6 @@
 """
+Type annotations for s3transfer.subscribers module.
+
 Copyright 2024 Vlad Emelianov
 """
 

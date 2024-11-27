@@ -1,4 +1,6 @@
 """
+Type annotations for s3transfer.copies module.
+
 Copyright 2024 Vlad Emelianov
 """
 

@@ -1,3 +1,9 @@
+"""
+Type annotations for s3transfer.constants module.
+
+Copyright 2024 Vlad Emelianov
+"""
+
 KB: int
 MB: int
 GB: int

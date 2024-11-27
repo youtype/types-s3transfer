@@ -1,4 +1,6 @@
 """
+Type annotations for s3transfer.bandwidth module.
+
 Copyright 2024 Vlad Emelianov
 """
 

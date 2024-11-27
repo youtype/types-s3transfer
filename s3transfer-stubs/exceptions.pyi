@@ -1,4 +1,6 @@
 """
+Type annotations for s3transfer.exceptions module.
+
 Copyright 2024 Vlad Emelianov
 """
 

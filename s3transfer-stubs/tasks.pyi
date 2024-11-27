@@ -1,4 +1,6 @@
 """
+Type annotations for s3transfer.tasks module.
+
 Copyright 2024 Vlad Emelianov
 """
 

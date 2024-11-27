@@ -1,3 +1,9 @@
+"""
+Type annotations for s3transfer.delete module.
+
+Copyright 2024 Vlad Emelianov
+"""
+
 from s3transfer.tasks import SubmissionTask as SubmissionTask
 from s3transfer.tasks import Task as Task
 
