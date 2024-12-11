@@ -15,12 +15,17 @@ repos:
         name: pyright
         language: system
         pass_filenames: false
-        entry: uv run pyright
+        entry: uvx --with 's3transfer[crt]' pyright
       - id: mypy
         name: mypy
         language: system
         pass_filenames: false
-        entry: uv run mypy s3transfer-stubs
+        entry: uvx --with 's3transfer[crt]' mypy s3transfer-stubs
+      - id: istub
+        name: istub
+        language: system
+        pass_filenames: false
+        entry: uvx  --with 's3transfer[crt]' istub -u
       - id: sanity
         name: sanity
         language: system

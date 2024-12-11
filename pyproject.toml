@@ -28,11 +28,10 @@ classifiers = [
 ]
 
 [dependency-groups]
-dev = ["setuptools", "awscrt", "s3transfer", "mypy", "pyright", "istub"]
+dev = ["setuptools"]
 types = [
     "botocore-stubs",
     "types-awscrt",
-    "types-requests",
     "types-python-dateutil",
     "types-dataclasses",
 ]
