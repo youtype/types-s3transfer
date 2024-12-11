@@ -27,21 +27,19 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
-[tool.uv]
-config-settings = { editable-mode = "strict" }
-dev-dependencies = [
-    "setuptools",
-    "awscrt",
-    "s3transfer",
-    "botocore",
-    "mypy",
-    "pyright",
-    "istub",
+[dependency-groups]
+dev = ["setuptools", "awscrt", "s3transfer", "mypy", "pyright", "istub"]
+types = [
     "botocore-stubs",
+    "types-awscrt",
     "types-requests",
     "types-python-dateutil",
     "types-dataclasses",
 ]
+
+[tool.uv]
+config-settings = { editable-mode = "strict" }
+default-groups = ["dev", "types"]
 
 [project.urls]
 Homepage = "https://github.com/youtype/types-s3transfer"
