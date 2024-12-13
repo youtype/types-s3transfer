@@ -28,7 +28,7 @@ classifiers = [
 ]
 
 [dependency-groups]
-dev = ["setuptools"]
+dev = ["setuptools", "istub", "awscrt"]
 types = [
     "botocore-stubs",
     "types-awscrt",

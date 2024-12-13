@@ -25,7 +25,7 @@ repos:
         name: istub
         language: system
         pass_filenames: false
-        entry: uvx  --with 's3transfer[crt]' istub -u
+        entry: uv run istub -u
       - id: sanity
         name: sanity
         language: system
