@@ -1,7 +1,7 @@
 """
 Type annotations for s3transfer.exceptions module.
 
-Copyright 2024 Vlad Emelianov
+Copyright 2025 Vlad Emelianov
 """
 
 from concurrent.futures import CancelledError as CancelledError

@@ -1,7 +1,7 @@
 """
 Type annotations for s3transfer.futures module.
 
-Copyright 2024 Vlad Emelianov
+Copyright 2025 Vlad Emelianov
 """
 
 import logging
