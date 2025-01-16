@@ -5,6 +5,7 @@ Copyright 2024 Vlad Emelianov
 """
 
 import logging
+from collections import defaultdict
 from typing import (
     IO,
     Any,
@@ -43,7 +44,9 @@ def invoke_progress_callbacks(
     callbacks: Iterable[Callable[..., Any]], bytes_transferred: int
 ) -> None: ...
 def get_filtered_dict(
-    original_dict: dict[str, Any], whitelisted_keys: Sequence[str]
+    original_dict: dict[str, Any],
+    whitelisted_keys: Sequence[str] | None = None,
+    blocklisted_keys: Sequence[str] | None = None,
 ) -> dict[str, Any]: ...
 
 class CallArgs:
@@ -158,3 +161,4 @@ class ChunksizeAdjuster:
     def adjust_chunksize(self, current_chunksize: int, file_size: int | None = ...) -> int: ...
 
 def add_s3express_defaults(bucket: Any, extra_args: dict[str, Any]) -> None: ...
+def set_default_checksum_algorithm(extra_args: defaultdict[str, Any]) -> None: ...
