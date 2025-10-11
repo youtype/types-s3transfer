@@ -5,6 +5,7 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
+from concurrent.futures import ThreadPoolExecutor
 from typing import IO, Any, Mapping, Sequence, TypeVar
 
 from botocore.client import BaseClient
@@ -79,7 +80,7 @@ class TransferManager:
         client: BaseClient,
         config: TransferConfig | None = ...,
         osutil: OSUtils | None = ...,
-        executor_cls: type[BaseExecutor] | None = ...,
+        executor_cls: type[ThreadPoolExecutor | BaseExecutor] | None = ...,
     ) -> None: ...
     @property
     def client(self) -> BaseClient: ...

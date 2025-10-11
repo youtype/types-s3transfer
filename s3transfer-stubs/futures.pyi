@@ -5,6 +5,7 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
+from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Callable, Mapping, NamedTuple
 
 from s3transfer.compat import MAXINT as MAXINT
@@ -90,13 +91,13 @@ class TransferCoordinator:
     def announce_done(self) -> None: ...
 
 class BoundedExecutor:
-    EXECUTOR_CLS: type[BaseExecutor]
+    EXECUTOR_CLS: type[ThreadPoolExecutor]
     def __init__(
         self,
         max_size: int,
         max_num_threads: int,
         tag_semaphores: dict[str, Any] | None = ...,
-        executor_cls: type[BaseExecutor] | None = ...,
+        executor_cls: type[ThreadPoolExecutor | BaseExecutor] | None = ...,
     ) -> None: ...
     def submit(
         self, task: Task, tag: TaskTag | None = ..., block: bool = ...

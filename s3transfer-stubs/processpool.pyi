@@ -49,7 +49,7 @@ class GetObjectJob(NamedTuple):
     offset: int
     filename: str
 
-def ignore_ctrl_c() -> Generator[None, None, None]: ...
+def ignore_ctrl_c() -> Generator[None]: ...
 
 class ProcessTransferConfig:
     multipart_threshold: int
