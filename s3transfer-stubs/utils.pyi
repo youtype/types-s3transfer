@@ -6,13 +6,11 @@ Copyright 2025 Vlad Emelianov
 
 import logging
 from collections import defaultdict
+from collections.abc import Iterable, Iterator, Sequence
 from typing import (
     IO,
     Any,
     Callable,
-    Iterable,
-    Iterator,
-    Sequence,
     TypeVar,
 )
 

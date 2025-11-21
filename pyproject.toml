@@ -1,16 +1,16 @@
 [project]
 name = "types-s3transfer"
 version = "0.15.0"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 description = "Type annotations and code completion for s3transfer"
 authors = [{ name = "Vlad Emelianov", email = "vlad.emelianov.nz@gmail.com" }]
-license = { file = "LICENSE" }
+license = "MIT"
+license-files = ["LICENSE"]
 readme = "README.md"
 keywords = ["s3transfer", "type-annotations", "pyright", "mypy", "boto3"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
-    "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
@@ -48,7 +48,7 @@ Changelog = "https://github.com/youtype/types-s3transfer/releases"
 Issues = "https://github.com/youtype/types-s3transfer/issues"
 
 [build-system]
-requires = ['setuptools']
+requires = ['setuptools>=77.0.0']
 build-backend = 'setuptools.build_meta'
 
 [tool.setuptools]
@@ -64,10 +64,10 @@ reportMissingTypeArgument = "error"
 reportIncompatibleMethodOverride = "error"
 reportIncompatibleVariableOverride = "error"
 reportUnknownParameterType = "error"
-pythonVersion = "3.8"
+pythonVersion = "3.9"
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.9"
 warn_return_any = false
 warn_unused_ignores = false
 warn_unused_configs = true
@@ -91,7 +91,7 @@ exclude = [
 
 line-length = 100
 indent-width = 4
-target-version = "py38"
+target-version = "py39"
 
 [tool.ruff.lint]
 preview = true

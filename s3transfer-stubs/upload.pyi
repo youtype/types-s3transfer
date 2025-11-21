@@ -4,7 +4,8 @@ Type annotations for s3transfer.upload module.
 Copyright 2025 Vlad Emelianov
 """
 
-from typing import IO, Any, Callable, Iterator, Sequence, TypeVar
+from collections.abc import Iterator, Sequence
+from typing import IO, Any, Callable, TypeVar
 
 from s3transfer.bandwidth import BandwidthLimiter
 from s3transfer.compat import readable as readable

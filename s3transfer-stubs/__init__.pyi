@@ -5,9 +5,10 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
+from collections.abc import Iterator, Mapping
 from concurrent.futures import ThreadPoolExecutor
 from queue import Queue
-from typing import IO, Any, Callable, Iterator, Mapping, TypeVar
+from typing import IO, Any, Callable, TypeVar
 
 from botocore.awsrequest import AWSRequest
 from botocore.client import BaseClient

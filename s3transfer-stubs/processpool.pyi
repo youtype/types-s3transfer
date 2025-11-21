@@ -6,8 +6,9 @@ Copyright 2025 Vlad Emelianov
 
 import logging
 import multiprocessing
+from collections.abc import Generator, Mapping
 from queue import Queue
-from typing import Any, Callable, Generator, Mapping, NamedTuple, TypeVar
+from typing import Any, Callable, NamedTuple, TypeVar
 
 from botocore.client import BaseClient
 from s3transfer.compat import MAXINT as MAXINT

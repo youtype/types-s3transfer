@@ -5,8 +5,9 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
+from collections.abc import Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor
-from typing import IO, Any, Mapping, Sequence, TypeVar
+from typing import IO, Any, TypeVar
 
 from botocore.client import BaseClient
 from s3transfer.bandwidth import BandwidthLimiter as BandwidthLimiter

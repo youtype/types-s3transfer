@@ -5,8 +5,9 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
+from collections.abc import Mapping
 from concurrent.futures import ThreadPoolExecutor
-from typing import Any, Callable, Mapping, NamedTuple
+from typing import Any, Callable, NamedTuple
 
 from s3transfer.compat import MAXINT as MAXINT
 from s3transfer.exceptions import TransferNotDoneError as TransferNotDoneError
