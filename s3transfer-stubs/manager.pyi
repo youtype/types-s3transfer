@@ -42,6 +42,8 @@ _R = TypeVar("_R")
 logger: logging.Logger
 
 class TransferConfig:
+    UNSET_DEFAULT: object = ...
+
     multipart_threshold: int
     multipart_chunksize: int
     max_request_concurrency: int
@@ -69,6 +71,7 @@ class TransferConfig:
         max_in_memory_download_chunks: int = ...,
         max_bandwidth: int | None = ...,
     ) -> None: ...
+    def get_deep_attr(self, item: str) -> Any: ...
 
 class TransferManager:
     ALLOWED_DOWNLOAD_ARGS: list[str]

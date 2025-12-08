@@ -11,6 +11,7 @@ from typing import (
     IO,
     Any,
     Callable,
+    NamedTuple,
     TypeVar,
 )
 
@@ -22,6 +23,7 @@ from s3transfer.constants import MB as MB
 from s3transfer.exceptions import TransferNotDoneError as TransferNotDoneError
 from s3transfer.futures import BaseTransferFuture as BaseTransferFuture
 from s3transfer.futures import BaseTransferMeta as BaseTransferMeta
+from s3transfer.manager import TransferConfig
 from s3transfer.subscribers import BaseSubscriber
 from s3transfer.utils import CallArgs as CallArgs
 from s3transfer.utils import OSUtils as OSUtils
@@ -54,6 +56,7 @@ class CRTTransferManager:
         crt_s3_client: S3Client,  # type: ignore
         crt_request_serializer: BaseCRTRequestSerializer,
         osutil: OSUtils | None = ...,
+        config: TransferConfig | None = ...,
     ) -> None: ...
     def __enter__(self: _R) -> _R: ...
     def __exit__(
@@ -155,9 +158,16 @@ class CRTTransferCoordinator:
         s3_request: S3Request,  # type: ignore
     ) -> None: ...
 
+class CRTConfigParameter(NamedTuple):
+    name: str
+    min_version: tuple[int, ...]
+
 class S3ClientArgsCreator:
     def __init__(
-        self, crt_request_serializer: BaseCRTRequestSerializer, os_utils: OSUtils
+        self,
+        crt_request_serializer: BaseCRTRequestSerializer,
+        os_utils: OSUtils,
+        config: TransferConfig | None = ...,
     ) -> None: ...
     def get_make_request_args(
         self,
