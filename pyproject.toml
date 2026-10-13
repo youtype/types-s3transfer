@@ -1,7 +1,7 @@
 [project]
 name = "types-s3transfer"
 version = "0.16.0"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 description = "Type annotations and code completion for s3transfer"
 authors = [{ name = "Vlad Emelianov", email = "vlad.emelianov.nz@gmail.com" }]
 license = "MIT"
@@ -14,7 +14,6 @@ classifiers = [
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -63,10 +62,10 @@ reportMissingTypeArgument = "error"
 reportIncompatibleMethodOverride = "error"
 reportIncompatibleVariableOverride = "error"
 reportUnknownParameterType = "error"
-pythonVersion = "3.9"
+pythonVersion = "3.10"
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.10"
 warn_return_any = false
 warn_unused_ignores = false
 warn_unused_configs = true
@@ -90,7 +89,7 @@ exclude = [
 
 line-length = 100
 indent-width = 4
-target-version = "py39"
+target-version = "py310"
 
 [tool.ruff.lint]
 preview = true
@@ -112,12 +111,12 @@ unfixable = ["B"]
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 exclude = ["test_*.py"]
 ignore = [
-    "N803",   # invalid-argument-name
-    "N818",   # exception-name
-    "PYI010", # non-empty-stub-body
-    "PYI019", # custom-type-var-return-type
-    "PYI021", # docstring-in-stub
-    "PYI048", # stub-body-multiple-statements
+    "invalid-argument-name",          # invalid-argument-name
+    "error-suffix-on-exception-name", # exception-name
+    "non-empty-stub-body",            # non-empty-stub-body
+    "custom-type-var-for-self",       # custom-type-var-return-type
+    "docstring-in-stub",              # docstring-in-stub
+    "stub-body-multiple-statements",  # stub-body-multiple-statements
 ]
 
 [tool.ruff.format]

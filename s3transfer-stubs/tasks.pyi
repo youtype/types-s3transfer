@@ -5,8 +5,8 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
-from collections.abc import Sequence
-from typing import Any, Callable
+from collections.abc import Callable, Sequence
+from typing import Any
 
 from botocore.context import ClientContext
 from s3transfer.futures import TransferCoordinator

@@ -5,12 +5,11 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
-from collections.abc import Iterator, Mapping, Sequence
+from collections.abc import Callable, Iterator, Mapping, Sequence
 from io import BytesIO
 from typing import (
     IO,
     Any,
-    Callable,
     NamedTuple,
     TypeVar,
 )

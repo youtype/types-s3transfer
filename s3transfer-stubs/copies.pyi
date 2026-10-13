@@ -18,6 +18,13 @@ class CopySubmissionTask(SubmissionTask):
     UPLOAD_PART_COPY_ARGS: list[str]
     CREATE_MULTIPART_ARGS_BLACKLIST: list[str]
     COMPLETE_MULTIPART_ARGS: list[str]
+    PRESERVED_METADATA_FIELDS: list[str]
+    GET_OBJECT_TAGGING_ARGS: list[str]
+    PUT_OBJECT_TAGGING_ARGS: list[str]
+    LIST_OBJECT_ANNOTATIONS_ARGS: list[str]
+    GET_OBJECT_ANNOTATION_ARGS: list[str]
+    PUT_OBJECT_ANNOTATION_ARGS: list[str]
 
 class CopyObjectTask(Task): ...
 class CopyPartTask(Task): ...
+class CopyCompleteMultipartUploadTask(CompleteMultipartUploadTask): ...

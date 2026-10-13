@@ -5,8 +5,9 @@ Copyright 2025 Vlad Emelianov
 """
 
 import os
+from collections.abc import Callable
 from multiprocessing.managers import BaseManager as _BaseManager
-from typing import IO, Any, Callable
+from typing import IO, Any
 
 rename_file = os.rename
 

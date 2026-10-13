@@ -5,7 +5,8 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
-from typing import IO, Any, Callable, TypeVar
+from collections.abc import Callable
+from typing import IO, Any, TypeVar
 
 from s3transfer.compat import seekable as seekable
 from s3transfer.exceptions import RetriesExceededError as RetriesExceededError
@@ -95,7 +96,10 @@ class DownloadSpecialFilenameOutputManager(DownloadNonSeekableOutputManager):
     def get_final_io_task(self) -> Task: ...
 
 class DownloadSubmissionTask(SubmissionTask): ...
-class GetObjectTask(Task): ...
+
+class GetObjectTask(Task):
+    def get_response(self) -> Any: ...
+
 class ImmediatelyWriteIOGetObjectTask(GetObjectTask): ...
 class IOWriteTask(Task): ...
 class IOStreamingWriteTask(Task): ...
@@ -111,6 +115,24 @@ class CompleteDownloadNOOPTask(Task):
         done_callbacks: Callable[..., Any] | None = ...,
         is_final: bool = ...,
     ) -> None: ...
+
+class GetObjectFirstChunkOnDoneCallback:
+    def __init__(
+        self,
+        transfer_future: TransferFuture,
+        download_output_manager: DownloadOutputManager,
+        io_executor: BoundedExecutor,
+        transfer_coordinator: TransferCoordinator,
+        client: Any,
+        config: Any,
+        request_executor: BoundedExecutor,
+        bandwidth_limiter: Any,
+        fileobj: Any,
+        progress_callbacks: Any,
+        get_object_tag: TaskTag,
+    ) -> None: ...
+    def set_task(self, task: Task) -> None: ...
+    def __call__(self) -> None: ...
 
 class DownloadChunkIterator:
     def __init__(self, body: IO[Any], chunksize: int) -> None: ...

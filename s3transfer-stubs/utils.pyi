@@ -6,13 +6,8 @@ Copyright 2025 Vlad Emelianov
 
 import logging
 from collections import defaultdict
-from collections.abc import Iterable, Iterator, Sequence
-from typing import (
-    IO,
-    Any,
-    Callable,
-    TypeVar,
-)
+from collections.abc import Callable, Iterable, Iterator, Sequence
+from typing import IO, Any, TypeVar
 
 from botocore.awsrequest import AWSRequest
 from s3transfer.compat import SOCKET_ERROR as SOCKET_ERROR
@@ -77,8 +72,8 @@ class OSUtils:
     ) -> ReadFileChunk: ...
     def open(self, filename: str, mode: str) -> IO[Any]: ...
     def remove_file(self, filename: str) -> None: ...
-    def rename_file(self, current_filename: str, new_filename: str) -> None: ...  # noqa: F811
-    def is_special_file(cls, filename: str) -> bool: ...  # type: ignore  # noqa: N805
+    def rename_file(self, current_filename: str, new_filename: str) -> None: ...
+    def is_special_file(cls, filename: str) -> bool: ...  # type: ignore  # ruff: ignore[invalid-first-argument-name-for-method]
     def get_temp_filename(self, filename: str) -> str: ...
     def allocate(self, filename: str, size: int) -> None: ...
 
