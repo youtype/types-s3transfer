@@ -1,6 +1,6 @@
 [project]
 name = "types-s3transfer"
-version = "0.19.2"
+version = "0.19.3"
 requires-python = ">=3.10"
 description = "Type annotations and code completion for s3transfer"
 authors = [{ name = "Vlad Emelianov", email = "vlad.emelianov.nz@gmail.com" }]
